@@ -159,6 +159,7 @@ class NotificationService {
         scheduleNext();
       }, timeout);
 
+      // eslint-disable-next-line no-console
       console.log(`Next reading reminder scheduled for: ${target.toLocaleString('tr-TR')}`);
     };
 
@@ -169,6 +170,7 @@ class NotificationService {
     if (this.timeoutId) {
       clearTimeout(this.timeoutId);
       this.timeoutId = null;
+      // eslint-disable-next-line no-console
       console.log('Scheduled reminder cancelled');
     }
   }

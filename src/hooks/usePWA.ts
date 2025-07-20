@@ -63,10 +63,12 @@ export const usePWA = () => {
       setInstallPrompt(beforeInstallPromptEvent);
       setIsInstallable(true);
       
+      // eslint-disable-next-line no-console
       console.log('PWA install prompt available');
     };
 
     const handleAppInstalled = () => {
+      // eslint-disable-next-line no-console
       console.log('PWA was installed');
       setIsInstalled(true);
       setIsInstallable(false);
@@ -92,6 +94,7 @@ export const usePWA = () => {
       await installPrompt.prompt();
       const result = await installPrompt.userChoice;
       
+      // eslint-disable-next-line no-console
       console.log('Install prompt result:', result);
       
       if (result.outcome === 'accepted') {
@@ -148,9 +151,11 @@ export const usePWA = () => {
         scope: '/',
       });
 
+      // eslint-disable-next-line no-console
       console.log('Service Worker registered successfully:', registration);
 
       registration.addEventListener('updatefound', () => {
+        // eslint-disable-next-line no-console
         console.log('New service worker version available');
       });
 
@@ -159,7 +164,7 @@ export const usePWA = () => {
       console.error('Service Worker registration failed:', err);
       setError(err instanceof Error ? err.message : 'Service Worker registration failed');
     }
-  }, []);
+  }, [isServiceWorkerSupported]);
 
   // Register service worker on mount
   useEffect(() => {

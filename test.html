@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            padding: 50px;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            background: rgba(0,0,0,0.8);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        button {
+            background: #ff6b6b;
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 DEPLOYMENT TEST</h1>
+        <p>If you can see this colorful page, the deployment is working!</p>
+        <button onclick="alert('JavaScript is working!')">Test JavaScript</button>
+        <button onclick="window.location.reload()">Reload Page</button>
+        <div style="margin-top: 30px;">
+            <small>Time: <span id="time"></span></small>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            document.getElementById('time').textContent = new Date().toLocaleString();
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        console.log('✅ Test page loaded successfully!');
+        console.log('Current URL:', window.location.href);
+        console.log('User Agent:', navigator.userAgent);
+    </script>
+</body>
+</html>

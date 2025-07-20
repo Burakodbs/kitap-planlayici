@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { CheckCircle, AlertCircle, X, Info, AlertTriangle } from 'lucide-react';
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
@@ -61,6 +61,13 @@ export const Toast: React.FC<ToastProps> = ({
   const config = toastConfig[type];
   const Icon = config.icon;
 
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      onClose();
+    }, 300); // Match exit animation duration
+  }, [onClose]);
+
   useEffect(() => {
     // Trigger entrance animation
     const showTimer = setTimeout(() => setIsVisible(true), 10);
@@ -80,14 +87,7 @@ export const Toast: React.FC<ToastProps> = ({
       clearTimeout(progressTimer);
       clearTimeout(hideTimer);
     };
-  }, [duration]);
-
-  const handleClose = () => {
-    setIsExiting(true);
-    setTimeout(() => {
-      onClose();
-    }, 300); // Match exit animation duration
-  };
+  }, [duration, handleClose]);
 
   const progressBarStyle: React.CSSProperties = {
     width: `${progressWidth}%`,
